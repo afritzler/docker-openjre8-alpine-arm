@@ -1,4 +1,4 @@
-FROM alpine:3.4
+FROM armhf/alpine:3.4
 
 # Default to UTF-8 file.encoding
 ENV LANG C.UTF-8
