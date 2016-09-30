@@ -15,11 +15,8 @@ RUN { \
 ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
 ENV PATH $PATH:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openjdk/bin
 
-ENV JAVA_VERSION 8u101
-ENV JAVA_ALPINE_VERSION 8.101.13-r1
-
-RUN apk update && \
-    apk add --no-cache \
-    openjdk8="$JAVA_ALPINE_VERSION" \
-	  && [ "$JAVA_HOME" = "$(docker-java-home)" ]
-    rm -rf /var/cache/apk/* /tmp/* /var/tmp/*
+RUN echo "http://dl-4.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
+    && apk add --update \
+    curl \
+    openjdk8-jre-base \
+    && rm /var/cache/apk/*
